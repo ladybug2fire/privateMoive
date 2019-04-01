@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="/css/main.css" >
+        <title><%= title %></title>
+        <%- style %>
+    </head>
+    <body>
+        <header>
+            <%- defineContent('header') %>
+        </header>
+        <%- body %>
+        <footer>
+            <% /*
+            Define an optional placeholder for the footer.
+            If a page doesn't define a footer, this section will simply be empty.
+            */ %>
+            <%- defineContent('footer') %>
+        </footer>
+</body>
+    <script src="/js/jquery.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <%- script %>
+</html>
