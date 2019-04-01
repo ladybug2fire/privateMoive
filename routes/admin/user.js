@@ -11,30 +11,76 @@ router.get('/', function(req, res){
 });
 
 router.post('/new', function(req, res){
-    console.log(req.body)
-    // var user = new User({
-    //     username : 'Tracy McGrady',                 //用户账号
-    //     userpwd: 'abcd',                            //密码
-    //     userage: 37,                                //年龄
-    //     phone: 1377078464,
-    // });
-    // user.save(function (err, result) {
-    //     if (err) {
-    //         console.log("Error:" + err);
-    //     }
-    //     else {
-    //         res.redirect('/user');    
-    //     }
-    // });
-    res.send(req.body.name)
-    // res.render("admin/index", {title: '登入', layout: 'admin/layout' });
+    User.find({ username: req.body.name}, function(err, result){
+        if(result.length){
+            res.send('username is in used')
+        }else{
+            var user = new User({
+                username : req.body.name,
+                userpwd: req.body.pwd,
+                phone: req.body.phone,
+            });
+            user.save(function (err, result) {
+                if (err) {
+                    console.log("Error:" + err);
+                    res.json({
+                        code: 500,
+                        msg: err,
+                    })
+                }
+                else {
+                    res.json({
+                        code: 200,
+                        msg: '创建账号成功'
+                    }) 
+                }
+            });
+        }
+    })
+})
+
+router.get('/new', function(req, res){
+    res.render("admin/newuser", {title: '创建用户', layout: 'admin/layout'})
+})
+
+// 编辑要修改下
+router.post('/edit', function(req, res){
+    User.find({ username: req.body.name}, function(err, result){
+        if(result.length){
+            res.send('username is in used')
+        }else{
+            var user = new User({
+                username : req.body.name,
+                userpwd: req.body.pwd,
+                phone: req.body.phone,
+            });
+            user.save(function (err, result) {
+                if (err) {
+                    console.log("Error:" + err);
+                    res.json({
+                        code: 500,
+                        msg: err,
+                    })
+                }
+                else {
+                    res.json({
+                        code: 200,
+                        msg: '创建账号成功'
+                    }) 
+                }
+            });
+        }
+    })
 })
 
 router.get('delete', function(req, res){
     // res.render("admin/index", {title: '登入', layout: 'admin/layout' });
 });
 
-router.get('get', function(req, res){
+router.get('/get', function(req, res){
+    User.findById(req.query.id, function(err, result){
+        res.json(result)
+    })
     // res.render("admin/index", {title: '登入', layout: 'admin/layout' });
 });
 
