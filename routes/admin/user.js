@@ -4,10 +4,9 @@ var router = express.Router()
 
 router.get('/', function(req, res){
     User.find(function(err, docs){
-        console.log(docs);
-        res.json(docs)
+        // res.json(docs)
+        res.render("admin/user/list", {title: '登入', layout: 'admin/layout', list: docs });
     })
-    // res.render("admin/index", {title: '登入', layout: 'admin/layout' });
 });
 
 router.post('/new', function(req, res){
@@ -40,7 +39,7 @@ router.post('/new', function(req, res){
 })
 
 router.get('/new', function(req, res){
-    res.render("admin/newuser", {title: '创建用户', layout: 'admin/layout'})
+    res.render("admin/user/new", {title: '创建用户', layout: 'admin/layout'})
 })
 
 // 编辑要修改下

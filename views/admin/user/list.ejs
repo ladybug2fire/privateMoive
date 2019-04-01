@@ -1,0 +1,28 @@
+<%- contentFor('body') %>
+
+<a href="/admin/user/new"><button>新增用户</button></a>
+
+<table id="example2" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>用户名</th>
+            <th>手机号</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% list.forEach(function(l){ %>
+            <tr>
+                <td><%- l.username %></td>
+                <td><%- l.phone %></td>
+                <td><a href="">编辑</a>&nbsp;&nbsp;&nbsp;<a href="">删除</a></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        $('#example2').DataTable()
+    })
+</script>
