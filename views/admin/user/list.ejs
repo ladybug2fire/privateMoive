@@ -1,8 +1,8 @@
 <%- contentFor('body') %>
 
-<a href="/admin/user/new"><button>新增用户</button></a>
+<a href="/admin/user/new"><button class="btn btn-primary btn-sm">新增用户</button></a>
 
-<table id="example2" class="table table-bordered table-hover">
+<table id="user" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>用户名</th>
@@ -23,6 +23,6 @@
 
 <script>
     $(function () {
-        $('#example2').DataTable()
+        $('#user').DataTable()
     })
 </script>

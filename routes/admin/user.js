@@ -10,13 +10,13 @@ router.get('/', function(req, res){
 });
 
 router.post('/new', function(req, res){
-    User.find({ username: req.body.name}, function(err, result){
+    User.find({ username: req.body.username}, function(err, result){
         if(result.length){
-            res.send('username is in used')
+            res.send('用户名已经被占用')
         }else{
             var user = new User({
-                username : req.body.name,
-                userpwd: req.body.pwd,
+                username : req.body.username,
+                userpwd: req.body.password,
                 phone: req.body.phone,
             });
             user.save(function (err, result) {
@@ -44,13 +44,14 @@ router.get('/new', function(req, res){
 
 // 编辑要修改下
 router.post('/edit', function(req, res){
-    User.find({ username: req.body.name}, function(err, result){
+    console.log(req.body.name, req.body)
+    User.find({ username: req.body.username}, function(err, result){
         if(result.length){
             res.send('username is in used')
         }else{
             var user = new User({
-                username : req.body.name,
-                userpwd: req.body.pwd,
+                username : req.body.username,
+                userpwd: req.body.username,
                 phone: req.body.phone,
             });
             user.save(function (err, result) {

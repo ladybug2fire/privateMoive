@@ -2,10 +2,13 @@ var mongoose = require('../config/db'),
     Schema = mongoose.Schema;
 
 var MovieSchema = new Schema({
-    name: { type: String },
+    moviename: { type: String },
     picUrl: { type: String },
-    seats: { type: Array },
+    seats: { type: String },
     star: {type: Number },
+    addTime: {type: String},
+    sales: {type: Number},
+    movieyear: {type: String},
 });
 
 module.exports = mongoose.model('Movie',MovieSchema);
