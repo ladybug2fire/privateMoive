@@ -75,7 +75,7 @@ router.post('/new', function(req, res){
 })
 
 router.get('/new', function(req, res){
-    res.render("admin/movie/new", {title: '创建用户', layout: 'admin/layout'})
+    res.render("admin/movie/new", {title: '发布影片', layout: 'admin/layout'})
 })
 
 // 编辑要修改下

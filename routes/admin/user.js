@@ -5,7 +5,7 @@ var router = express.Router()
 router.get('/', function(req, res){
     User.find(function(err, docs){
         // res.json(docs)
-        res.render("admin/user/list", {title: '登入', layout: 'admin/layout', list: docs });
+        res.render("admin/user/list", {title: '用户管理', layout: 'admin/layout', list: docs });
     })
 });
 
@@ -14,6 +14,7 @@ router.post('/new', function(req, res){
         if(result.length){
             res.send('用户名已经被占用')
         }else{
+            console.log(req.body)
             var user = new User({
                 username : req.body.username,
                 userpwd: req.body.password,
@@ -73,7 +74,20 @@ router.post('/edit', function(req, res){
     })
 })
 
-router.get('delete', function(req, res){
+router.get('/delete', function(req, res){
+    User.findByIdAndRemove(req.query.id, (err, result)=>{
+        if(err){
+            res.json({
+                code: 500,
+                msg: '异常'
+            })
+        }else{
+            res.json({
+                code: 200,
+                msg: '删除成功'
+            })
+        }
+    })
     // res.render("admin/index", {title: '登入', layout: 'admin/layout' });
 });
 
