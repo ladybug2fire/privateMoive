@@ -23,6 +23,8 @@ app.set('layout extractStyles', true)
  */
 app.get('/', routes.index);
 app.get('/signup', routes.signup);
+app.get('/login', routes.login);
+app.get('/order', routes.order);
 app.get('/admin', require('./routes/admin/index').index);
 app.get('/admin/login', require('./routes/admin/login').login);
 app.get('/admin/register', require('./routes/admin/login').register);

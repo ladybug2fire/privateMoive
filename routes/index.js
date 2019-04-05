@@ -14,3 +14,7 @@ exports.signup = function(req, res){
 exports.login = function(req, res){
     res.render("login", {title: '登入' });
 }
+
+exports.order = function(req, res){
+    res.render("order", {title: '选座' });
+}
