@@ -1,5 +1,10 @@
+var Movie = require("../models/movie.js");
+
 exports.index = function (req, res) {
-    res.render("index", { title: '首页' });
+    Movie.find().sort({'_id': -1}).exec(function(err, docs){
+        if(err)res.send("出错了");
+        res.render("index", { title: '首页' , list: docs});
+    })
 }
 
 exports.signup = function(req, res){

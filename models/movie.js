@@ -9,6 +9,7 @@ var MovieSchema = new Schema({
     addTime: {type: String},
     sales: {type: Number},
     movieyear: {type: String},
+    desc: {type: String},
 });
 
 module.exports = mongoose.model('Movie',MovieSchema);
