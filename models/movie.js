@@ -7,7 +7,7 @@ var MovieSchema = new Schema({
     seats: { type: String },
     star: {type: Number },
     addTime: {type: String},
-    sales: {type: Number},
+    sales: [String],
     movieyear: {type: String},
     desc: {type: String},
 });

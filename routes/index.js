@@ -18,3 +18,17 @@ exports.login = function(req, res){
 exports.order = function(req, res){
     res.render("order", {title: '选座' });
 }
+
+exports.detail = function(req, res){
+    Movie.findById(req.query.id, function(err, result){
+        if(err){
+            res.send('err', err)
+        }else{
+            res.render("detail", {title: '详情' , movie: result});
+        }
+    })
+}
+
+exports.buy = function(req, res){
+    
+}

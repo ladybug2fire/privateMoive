@@ -90,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							  </div>
 							  <div class="form">
 								<h3>Login to your account</h3>
-								<form action="#" method="post">
+								<form action="/api/login" method="post">
 								  <input type="text" name="Username" placeholder="Username" required="">
 								  <input type="password" name="Password" placeholder="Password" required="">
 								  <input type="submit" value="Login">
@@ -98,11 +98,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							  </div>
 							  <div class="form">
 								<h3>Create an account</h3>
-								<form action="#" method="post">
+								<form action="/api/register" method="post">
 								  <input type="text" name="Username" placeholder="Username" required="">
 								  <input type="password" name="Password" placeholder="Password" required="">
-								  <input type="email" name="Email" placeholder="Email Address" required="">
-								  <input type="text" name="Phone" placeholder="Phone Number" required="">
+								  <input type="text" name="phone" placeholder="Phone Number" required="">
 								  <input type="submit" value="Register">
 								</form>
 							  </div>
@@ -144,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav>
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="index.html">首页</a></li>
+							<li class="active"><a href="/">首页</a></li>
 							<li><a href="index.html">最新上架</a></li>
 							<li><a href="index.html">热门电影</a></li>
 							<li><a href="index.html">个人中心</a></li>
