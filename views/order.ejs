@@ -105,11 +105,16 @@
       							}
       						}
       					});
-      					//sold seat
-      					sc.get(['1_2', '4_4','4_5','6_6','6_7','8_5','8_6','8_7','8_8', '10_1', '10_2']).status('unavailable');
-      					console.log();
+						  //sold seat
+						var id = getQueryString('id');
+
+						$.get('/getSold', {
+							id,
+						}, function(res){
+							// 处理已售情况
+							sc.get(['1_2', '4_4','4_5','6_6','6_7','8_5','8_6','8_7','8_8', '10_1', '10_2']).status('unavailable');
+						})
       					$('#buybtn').click(function(){
-							var id = getQueryString('id');
 							var seats = sc.find('selected');
 							console.log(id);
 							if(!seats.seatIds.length)alert('请选择座位')

@@ -13,7 +13,6 @@ router.post("/upload", upload.single('file'), function(req, res, next){
         addTime: new Date().toLocaleString(),
         picUrl: '/img/' + obj.filename,
         movieyear: req.body.movieyear,
-        sales: 0,
         star: req.body.star || 0,
         desc: req.body.desc,
     });
