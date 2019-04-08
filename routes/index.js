@@ -28,7 +28,7 @@ exports.doLogin = function(req, res) {
 exports.signup =  function(req, res){
   User.find({ username: req.body.username}, function(err, result){
       if(result.length){
-          res.render('error', {error:'用户名已经被占用', title: '发生错误'})
+          res.render('error', {error:'用户名已经被占用', title: '发生错误', username: ''})
       }else{
           console.log(req.body)
           var user = new User({

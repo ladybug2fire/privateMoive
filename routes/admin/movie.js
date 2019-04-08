@@ -32,10 +32,6 @@ router.post("/upload", upload.single('file'), function(req, res, next){
             }) 
         }
      });
-     res.json({
-        code: 200,
-        msg:'success'
-     });
 });
 
 
