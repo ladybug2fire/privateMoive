@@ -39,6 +39,19 @@ router.post('/new', function(req, res){
     })
 })
 
+router.post('/login',function(req, res) {
+    User.findOne({username: req.body.username},function(err, result){
+      console.log(result)
+      if(result && result.userpwd == req.body.password){
+        req.session.username = req.body.username;
+        req.session.userid = result._id;
+        res.redirect('/admin/order/dashboard');
+      }else{
+        res.render('error', {error:'账号或密码错误', title: '发生错误', username: ''})
+      }
+    })
+  })
+
 router.get('/new', function(req, res){
     res.render("admin/user/new", {title: '创建用户', layout: 'admin/layout'})
 })
