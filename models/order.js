@@ -3,6 +3,7 @@ var mongoose = require('../config/db'),
 
 var OrderSchema = new Schema({
     movieid: String,
+    moviename: String,
     seats: [String],
     price: Number,
     addTime: {type: String},

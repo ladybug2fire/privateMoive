@@ -15,6 +15,7 @@ router.post("/upload", upload.single('file'), function(req, res, next){
         movieyear: req.body.movieyear,
         star: req.body.star || 0,
         desc: req.body.desc,
+        price: req.body.price,
     });
     movie.save(function (err, result) {
         if (err) {
@@ -85,5 +86,9 @@ router.get('/get', function(req, res){
         res.json(result)
     })
 });
+
+router.get('/dashboard', function(req, res){
+    res.render("admin/chart", {title: '电影账目表', layout: 'admin/layout'});
+})
 
 module.exports = router;

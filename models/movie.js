@@ -8,6 +8,7 @@ var MovieSchema = new Schema({
     star: {type: Number },
     addTime: {type: String},
     sales: [String],
+    price: Number,
     movieyear: {type: String},
     desc: {type: String},
 });
