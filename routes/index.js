@@ -98,8 +98,8 @@ exports.buy = function(req, res) {
               moviename: result.moviename,
               seats: seats,
               price: _.get(result, 'price', 0) * seats.length,
-              userid: 1234,
-              username: "",
+              userid: req.session.userid,
+              username: req.session.username,
               addTime: new Date().toLocaleString()
             });
             order.save(function(err, result2) {
@@ -127,7 +127,7 @@ exports.buy = function(req, res) {
 };
 
 exports.orderlist = function(req, res) {
-  Order.find().sort({"_id":-1}).exec(function(err, result) {
+  Order.find({userid: req.session.userid}).sort({"_id":-1}).exec(function(err, result) {
     res.render("orderlist", { title: "我的订单", list: result, username: req.session.username || '' });
   });
 };
