@@ -19,7 +19,9 @@
             评分: <%- movie.star %>
             年份: <%- movie.movieyear %>
             简介: <%- movie.desc %>
-            <a href="/order?id=<%- movie._id %>"<button>取选座</button>
+            <% if(username) { %>
+              <a href="/order?id=<%- movie._id %>"<button>去选座</button>
+            <%}%>
             <div class="video-grid-single-page-agileits">
               <div data-video="dLmKio67pVQ" id="video">
                 <img src="<%- movie.picUrl%>" alt="" class="img-responsive" />

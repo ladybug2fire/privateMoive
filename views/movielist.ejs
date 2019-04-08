@@ -1,3 +1,11 @@
-<% list.forEach((e)=>{%>
-    <%- include('components/normal-movie-item', { item: e}) %>
-<% })%>
+<div class="movie-container">
+    <% list.forEach((e)=>{%>
+        <%- include('components/normal-movie-item', { item: e}) %>
+    <% })%>
+</div>
+
+<style>
+.movie-container{
+    margin: 20px;
+}
+</style>

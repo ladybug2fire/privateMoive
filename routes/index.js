@@ -1,25 +1,59 @@
 var Movie = require("../models/movie.js");
 var Order = require("../models/order.js");
+var User = require("../models/user.js");
 var _ = require("lodash");
 exports.index = function(req, res) {
+  console.log(req.session.username)
   Movie.find()
     .sort({ _id: -1 })
     .exec(function(err, docs) {
       if (err) res.send("出错了");
-      res.render("index", { title: "首页", list: docs });
+      res.render("index", { title: "首页", list: docs, username: req.session.username || '' });
     });
 };
 
-exports.signup = function(req, res) {
-  res.render("signup", { title: "注册", layout: "base" });
+exports.doLogin = function(req, res) {
+  User.findOne({username: req.body.username},function(err, result){
+    console.log(result)
+    if(result && result.userpwd == req.body.password){
+      req.session.username = req.body.username;
+      req.session.userid = result._id;
+      res.redirect('/');
+    }else{
+      res.render('error', {error:'账号或密码错误', title: '发生错误', username: ''})
+    }
+  })
 };
 
-exports.login = function(req, res) {
-  res.render("login", { title: "登入" });
-};
+exports.signup =  function(req, res){
+  User.find({ username: req.body.username}, function(err, result){
+      if(result.length){
+          res.render('error', {error:'用户名已经被占用', title: '发生错误'})
+      }else{
+          console.log(req.body)
+          var user = new User({
+              username : req.body.username,
+              userpwd: req.body.password,
+              phone: req.body.phone,
+          });
+          user.save(function (err, result) {
+              if (err) {
+                  console.log("Error:" + err);
+                  res.json({
+                      code: 500,
+                      msg: err,
+                  })
+              }
+              else {
+                res.redirect('/');
+              }
+          });
+      }
+  })
+}
 
 exports.order = function(req, res) {
-  res.render("order", { title: "选座" });
+  res.render("order", { title: "选座", username: req.session.username || '' });
 };
 
 exports.detail = function(req, res) {
@@ -27,7 +61,7 @@ exports.detail = function(req, res) {
     if (err) {
       res.send("err", err);
     } else {
-      res.render("detail", { title: "详情", movie: result });
+      res.render("detail", { title: "详情", movie: result, username: req.session.username || '' });
     }
   });
 };
@@ -93,14 +127,20 @@ exports.buy = function(req, res) {
 };
 
 exports.orderlist = function(req, res) {
-  Order.find(function(err, result) {
-    res.render("orderlist", { title: "我的订单", list: result });
+  Order.find().sort({"_id":-1}).exec(function(err, result) {
+    res.render("orderlist", { title: "我的订单", list: result, username: req.session.username || '' });
   });
 };
 
 exports.movielist = function(req, res) {
   Movie.find(function(err, result) {
-    res.render("movielist", { title: "电影列表", list: result });
+    res.render("movielist", { title: "电影列表", list: result, username: req.session.username || ''  });
+  });
+};
+
+exports.search = function(req, res) {
+  Movie.find({moviename: req.body.moviename},function(err, result) {
+    res.render("movielist", { title: "电影列表", list: result || [], username: req.session.username || ''  });
   });
 };
 

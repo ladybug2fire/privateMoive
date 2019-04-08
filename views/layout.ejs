@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>One Movies an Entertainment Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title><%- title %></title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,14 +59,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="index.html"><h1>One<span>Movies</span></h1></a>
 			</div>
 			<div class="w3_search">
-				<form action="#" method="post">
-					<input type="text" name="Search" placeholder="Search" required="">
+				<form action="search" method="post">
+					<input type="text" name="moviename" placeholder="搜索电影名" required="">
 					<input type="submit" value="Go">
 				</form>
 			</div>
 			<div class="w3l_sign_in_register">
 				<ul>
-					<li><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
+					<% if(username) {%>
+						<a href="/orderlist"><%- username %></a>
+					<% } else { %>
+						<li><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
+					<% } %>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
@@ -89,18 +93,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="tooltip">Click Me</div>
 							  </div>
 							  <div class="form">
-								<h3>Login to your account</h3>
-								<form action="/api/login" method="post">
-								  <input type="text" name="Username" placeholder="Username" required="">
-								  <input type="password" name="Password" placeholder="Password" required="">
+								<h3>登入</h3>
+								<form action="/login" method="post">
+								  <input type="text" name="username" placeholder="用户名" required="">
+								  <input type="password" name="password" placeholder="密码" required="">
 								  <input type="submit" value="Login">
 								</form>
 							  </div>
 							  <div class="form">
-								<h3>Create an account</h3>
-								<form action="/api/register" method="post">
-								  <input type="text" name="Username" placeholder="Username" required="">
-								  <input type="password" name="Password" placeholder="Password" required="">
+								<h3>注册</h3>
+								<form action="/signup" method="post">
+								  <input type="text" name="username" placeholder="用户名" required="">
+								  <input type="password" name="password" placeholder="密码" required="">
 								  <input type="text" name="phone" placeholder="Phone Number" required="">
 								  <input type="submit" value="Register">
 								</form>
@@ -146,7 +150,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="active"><a href="/">首页</a></li>
 							<li><a href="/movielist">最新上架</a></li>
 							<li><a href="/movielist">热门电影</a></li>
-							<li><a href="/orderlist">我的订单</a></li>
 						</ul>
 					</nav>
 				</div>
