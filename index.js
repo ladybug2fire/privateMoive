@@ -45,8 +45,9 @@ app.get('/getSold', routes.getSold);
 
 app.get('/admin', require('./routes/admin/index').index);
 app.get('/admin/login', require('./routes/admin/login').login);
-app.get('/admin/register', require('./routes/admin/login').register);
-app.get('/admin/register', require('./routes/admin/login').register);
+app.post('/admin/login', require('./routes/admin/login').dologin);
+app.get('/admin/logout', require('./routes/admin/login').adminlogout);
+
 app.use('/admin/user', require('./routes/admin/user'))
 app.use('/admin/movie', require('./routes/admin/movie'))
 app.use('/admin/order', require('./routes/admin/order'))
